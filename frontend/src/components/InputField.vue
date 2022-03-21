@@ -45,12 +45,11 @@ export default {
     }
 
     #field {
+        height: 8em;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 1em;
-
-        height: 8em;
+        padding: 1em 0 1em 0;
     }
 
     /* Styles for placeholder */
@@ -81,12 +80,13 @@ export default {
     }
 
     label {
+        width: 20em;
+        align-self: flex-start;
         font-size: 1.5em;
         margin-bottom: -40px;
         z-index: 100;
-        align-self: flex-start;
-        cursor: pointer;
         order: -1;
+        cursor: pointer;
     }
 
     input:focus~.labelClass {
@@ -104,14 +104,13 @@ export default {
     }
     /* End */
 
-    input{
+    input {
         width: 25em;
         height: 2.5em;
         font-size: 1.2em;
         padding: 3px;
         margin-bottom: 1.5em;
         border: none;
-        cursor: pointer;
     }
 
     input:focus{
@@ -121,11 +120,11 @@ export default {
     /* Styles for line under input */
     @keyframes lineForwards {
         from { width: 0em; }
-        to { width: 25em;  }
+        to { width: 25em; }
     }
 
     @keyframes lineBackwards {
-        from { width: 25em;  }
+        from { width: 25em; }
         to { width: 0em; }
     }
 
@@ -133,7 +132,6 @@ export default {
         width: 25em;
         height: 3px;
         font-size: 1.2em;
-
         margin-top: -30px;
         margin-bottom: 2em;
         background-color: #343a40;
@@ -141,10 +139,8 @@ export default {
 
     #line::after {
         content: "";
-        display: inline-block;
-        width: 0em;
+        width: 0;
         height: 3px;
-
         position: absolute;
         background-color: #0594B4;
     }

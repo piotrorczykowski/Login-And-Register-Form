@@ -12,7 +12,6 @@
                 otherValues="password"/>
             <input type="submit" id="submit" value="Login">
         </form>
-
     </div>
 </template>
 
@@ -22,16 +21,6 @@ import InputField from './InputField.vue'
 export default {
     components: {
         InputField
-    },
-    data() {
-        return {
-            email: '',
-            password: '',
-            isUnfocused: [
-                false,
-                false
-            ]
-        }
     }
 }
 </script>
@@ -49,7 +38,6 @@ export default {
         width: 40vw;
         height: 80vh;
         margin: auto;
-
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -65,21 +53,28 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        padding: 3em;
+        padding: 1em 3em 1em 3em;
     }
 
     #submit {
         width: 25em;
         height: 2.5em;
         font-size: 1.2em;
-
         padding: 3px;
-        /* margin-top: 1.5em; */
-
+        margin-top: 0.5em;
         background-color: #0594B4;
         border-color: #0594B4;
         color: white;
         font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #submit:hover {
+        opacity: 0.95;
+    }
+
+    #submit:active {
+        transform: scale(0.99);
     }
 </style>
