@@ -1,19 +1,27 @@
 <template>
-    <div id="login">
-        <h1>Log In</h1>
+    <div id="register">
+        <h1>Register</h1>
         <form>
             <InputField
                 type="email"
-                label="Email"
-                otherValues="email"/>
+                label="First Name"
+                otherValues="firstName"/>
+            <InputField
+                type="text"
+                label="Last Name"
+                otherValues="lastName"/>      
             <InputField
                 type="password"
                 label="Password"
                 otherValues="password"/>
-            <input type="submit" id="submit" value="Sign in">
+            <InputField
+                type="password"
+                label="Confirm Password"
+                otherValues="confirmPassword"/>
+            <input type="submit" id="submit" value="Create Account"/>
         </form>
-        <p>Don't have an account yet?
-            <router-link id="link" to="/register">Sign Up</router-link>
+        <p>Have an account?
+            <router-link id="link" to="/">Log in</router-link>
         </p>
     </div>
 </template>
@@ -36,14 +44,14 @@ export default {
         letter-spacing: 0.0625em;
     }
 
-    #login {
+    #register {
         width: 40vw;
         height: 80vh;
         margin: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
     }
 
     h1 {
@@ -58,7 +66,7 @@ export default {
     #submit {
         width: 25em;
         height: 2.5em;
-        margin-top: 0.5em;
+        margin-top: 1.5em;
         font-size: 1.2em;
         font-weight: bold;
         background-color: #0594B4;
@@ -73,14 +81,5 @@ export default {
 
     #submit:active {
         transform: scale(0.99);
-    }
-
-    #link {
-        text-decoration: none;
-        color: #0594B4;
-    }
-
-    #link:hover {
-        opacity: 0.8;
     }
 </style>

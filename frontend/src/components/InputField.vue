@@ -45,11 +45,10 @@ export default {
     }
 
     #field {
-        height: 8em;
+        height: 6em;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 1em 0 1em 0;
     }
 
     /* Styles for placeholder */
@@ -84,7 +83,7 @@ export default {
         align-self: flex-start;
         font-size: 1.5em;
         margin-bottom: -40px;
-        z-index: 100;
+        z-index: -1;
         order: -1;
         cursor: pointer;
     }
@@ -111,6 +110,7 @@ export default {
         padding: 3px;
         margin-bottom: 1.5em;
         border: none;
+        background-color:rgba(0, 0, 0, 0);
     }
 
     input:focus{
