@@ -29,12 +29,28 @@ export default {
         return {
             inputValue: '',
             isUnfocused: true,
-            animationFlag: false
+            animationFlag: false,
+            textColor: '#000000',
+            lineColorFirst: '#343a40',
+            lineColorSecond: '#0594B4'
         }
     },
     methods: {
         getValue() {
             return this.inputValue
+        },
+        isError(flag) {
+            if(flag)
+            {
+                this.textColor = '#ff0000'
+                this.lineColorFirst = '#ff0000'
+                this.lineColorSecond = '#343a40'
+            }
+            else {
+                this.textColor = '#000000'
+                this.lineColorSecond = '#0594B4'
+                this.lineColorFirst = '#343a40'
+            }
         }
     }
 }
@@ -91,6 +107,7 @@ export default {
         z-index: -1;
         order: -1;
         cursor: pointer;
+        color: v-bind('textColor');
     }
 
     input:focus~.labelClass {
@@ -139,7 +156,7 @@ export default {
         font-size: 1.2em;
         margin-top: -30px;
         margin-bottom: 2em;
-        background-color: #343a40;
+        background-color: v-bind('lineColorFirst');
     }
 
     #line::after {
@@ -147,7 +164,7 @@ export default {
         width: 0;
         height: 3px;
         position: absolute;
-        background-color: #0594B4;
+        background-color: v-bind('lineColorSecond')
     }
 
     input:focus~#line::after {

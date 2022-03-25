@@ -7,11 +7,13 @@
                 label="Email"
                 otherValues="email"
                 ref="mail"/>
+            <p class="error" v-if="v$.form.mail.$error">{{ v$.form.mail.$errors[0].$message }}</p>
             <InputField
                 type="password"
                 label="Password"
                 otherValues="password"
                 ref="password"/>
+            <p class="error" v-if="v$.form.password.$error">{{ v$.form.password.$errors[0].$message }}</p>
             <input id="submit" type="submit" value="Sign in">
         </form>
         <p>Don't have an account yet?
@@ -63,14 +65,20 @@ export default {
         submitForm() {
             this.getData()
 
-            //  Validate data
-            this.v$.$validate()
-            if(!this.v$.$error) {
+            //  Valid for each field
+            this.v$.form.mail.$touch()
+            this.v$.form.password.$touch()
+
+            //  Set/unset error style for each field 
+            this.v$.form.mail.$error ? this.$refs.mail.isError(true) : this.$refs.mail.isError(false)
+            this.v$.form.password.$error ? this.$refs.password.isError(true) : this.$refs.password.isError(false)
+
+
+            //  Check if everything is oK
+            if(!this.v$.form.mail.$error && !this.v$.form.password.$error)
+            {
                 alert('Form successfully submitted.')
                 console.log(this.form)
-            }
-            else {
-                alert('Form failed validation')
             }
         }
     }
@@ -103,6 +111,11 @@ export default {
     form {
         padding: 1em 3em 1em 3em;
     }
+
+    .error {
+        width: 25em;
+        color: #ff0000;
+    } 
 
     #submit {
         width: 25em;

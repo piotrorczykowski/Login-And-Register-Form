@@ -7,26 +7,31 @@
                 label="First Name"
                 otherValues="firstName"
                 ref="firstName"/>
+            <p class="error" v-if="v$.form.firstName.$error">{{ v$.form.firstName.$errors[0].$message }}</p>
             <InputField
                 type="text"
                 label="Last Name"
                 otherValues="lastName"
                 ref="lastName"/>
+            <p class="error" v-if="v$.form.lastName.$error">{{ v$.form.lastName.$errors[0].$message }}</p>
             <InputField
                 type="email"
                 label="Email"
                 otherValues="email"
-                ref="mail"/>     
+                ref="mail"/>
+            <p class="error" v-if="v$.form.mail.$error">{{ v$.form.mail.$errors[0].$message }}</p>
             <InputField
                 type="password"
                 label="Password"
                 otherValues="password"
                 ref="password"/>
+            <p class="error" v-if="v$.form.password.$error">{{ v$.form.password.$errors[0].$message }}</p>
             <InputField
                 type="password"
                 label="Confirm Password"
                 otherValues="confirmPassword"
                 ref="confirmPassword"/>
+            <p class="error" v-if="v$.form.confirmPassword.$error">{{ v$.form.confirmPassword.$errors[0].$message }}</p>
             <input type="submit" id="submit" value="Create Account"/>
         </form>
         <p>Have an account?
@@ -95,17 +100,30 @@ export default {
             this.form.password = this.$refs.password.getValue()
             this.form.confirmPassword = this.$refs.confirmPassword.getValue()
         },
+        validEachField(){
+            this.v$.form.firstName.$touch()
+            this.v$.form.lastName.$touch()
+            this.v$.form.mail.$touch()
+            this.v$.form.password.$touch()
+            this.v$.form.confirmPassword.$touch()
+        },
+        setUnsetErrorStyles() {
+            this.v$.form.firstName.$error ? this.$refs.firstName.isError(true) : this.$refs.firstName.isError(false)
+            this.v$.form.lastName.$error ? this.$refs.lastName.isError(true) : this.$refs.lastName.isError(false)
+            this.v$.form.mail.$error ? this.$refs.mail.isError(true) : this.$refs.mail.isError(false)
+            this.v$.form.password.$error ? this.$refs.password.isError(true) : this.$refs.password.isError(false)
+            this.v$.form.confirmPassword.$error ? this.$refs.confirmPassword.isError(true) : this.$refs.confirmPassword.isError(false)
+        },
         submitForm() {
             this.getData()
+            this.validEachField()
+            this.setUnsetErrorStyles()
 
-            //  Validate data
-            this.v$.$validate()
-            if(!this.v$.$error) {
+            //  Check if everything is oK
+            if(!this.v$.form.firstName.$error && !this.v$.form.lastName.$error && !this.v$.form.mail.$error && !this.v$.form.password.$error && !this.v$.form.confirmPassword.$error)
+            {
                 alert('Form successfully submitted.')
                 console.log(this.form)
-            }
-            else {
-                alert('Form failed validation')
             }
         }
     }
@@ -122,7 +140,7 @@ export default {
 
     #register {
         width: 40vw;
-        height: 90vh;
+        height: 100vh;
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -138,6 +156,11 @@ export default {
     form {
         padding: 1em 3em 1em 3em;
     }
+
+    .error {
+        width: 25em;
+        color: #ff0000;
+    } 
 
     #submit {
         width: 25em;
