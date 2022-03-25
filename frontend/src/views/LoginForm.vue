@@ -1,16 +1,18 @@
 <template>
     <div id="login">
         <h1>Log In</h1>
-        <form>
+        <form @submit.prevent="submitForm">
             <InputField
                 type="email"
                 label="Email"
-                otherValues="email"/>
+                otherValues="email"
+                ref="mail"/>
             <InputField
                 type="password"
                 label="Password"
-                otherValues="password"/>
-            <input type="submit" id="submit" value="Sign in">
+                otherValues="password"
+                ref="password"/>
+            <input id="submit" type="submit" value="Sign in">
         </form>
         <p>Don't have an account yet?
             <router-link id="link" to="/register">Sign Up</router-link>
@@ -20,10 +22,57 @@
 
 <script>
 import InputField from '../components/InputField.vue'
+import useValidate from '@vuelidate/core'
+import { required, email, minLength, maxLength } from '@vuelidate/validators'
 
 export default {
     components: {
         InputField
+    },
+    data() {
+        return {
+            v$: useValidate(),
+            form: {
+                mail: '',
+                password: ''   
+            }
+        }
+    },
+    validations() {
+        return {
+            form: {
+                mail: {
+                    required,
+                    email,
+                    min: minLength(8)
+                },
+                password: {
+                    required,
+                    min: minLength(8),
+                    max: maxLength(50)
+                }   
+            }
+        }
+    },
+    methods: {
+        getData() {
+            //  Get data from components
+            this.form.mail = this.$refs.mail.getValue()
+            this.form.password = this.$refs.password.getValue()
+        },
+        submitForm() {
+            this.getData()
+
+            //  Validate data
+            this.v$.$validate()
+            if(!this.v$.$error) {
+                alert('Form successfully submitted.')
+                console.log(this.form)
+            }
+            else {
+                alert('Form failed validation')
+            }
+        }
     }
 }
 </script>

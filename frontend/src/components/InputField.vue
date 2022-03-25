@@ -8,9 +8,9 @@
             :type=type
             :name=otherValues
             autocomplete="off"
-            v-model="value">
+            v-model="inputValue">
         <label
-            :class="[(isUnfocused && !value) ? 'placeholder' : 'placeholderUp', (!animationFlag) ? 'labelClass' : '']"
+            :class="[(isUnfocused && !inputValue) ? 'placeholder' : 'placeholderUp', (!animationFlag) ? 'labelClass' : '']"
             :for=type>
             {{ label }}
         </label>
@@ -27,9 +27,14 @@ export default {
     ],
     data() {
         return {
-            value: '',
+            inputValue: '',
             isUnfocused: true,
             animationFlag: false
+        }
+    },
+    methods: {
+        getValue() {
+            return this.inputValue
         }
     }
 }
