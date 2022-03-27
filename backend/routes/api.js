@@ -1,13 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const userActions = require('../actions/api/userActions')
 
-router.get('/login', function(req, res) {
-    res.send('Welcome from login')
-})
-
-router.get('/register', function(req, res) {
-    res.send('Welcome from register')
-})
-
+router.post('/login', userActions.login)
+router.post('/register', userActions.register)
 
 module.exports = router;
