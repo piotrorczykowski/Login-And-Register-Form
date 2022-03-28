@@ -1,14 +1,30 @@
 const User = require('../../db/models/user')
 const bcrypt = require('bcryptjs')
+const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 
 class UserActions {
     login(req, res) {
+        //  Check validation
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          return res.status(422).jsonp(errors.array())
+        }
+
+        //  Get user data
         const { email, password } = req.body
+
         res.send(email + '\n' + password)
     }
     
     async register(req, res) {
+        //  Check validation
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          return res.status(422).jsonp(errors.array())
+        }
+
+        //  Get user data
         const { firstName, lastName, email, password } = req.body
         
         //  Hash password
@@ -36,4 +52,4 @@ class UserActions {
     }
 }
 
-module.exports = new UserActions();
+module.exports = new UserActions()

@@ -1,8 +1,12 @@
 const express = require('express')
 const userActions = require('../actions/api/userActions')
+const userValidator = require('../validators/userValidator')
 const router = express.Router()
 
-router.post('/login', userActions.login)
-router.post('/register', userActions.register)
+//  Login with data validation
+router.post('/login', userValidator.loginValidator, userActions.login)
+
+//  Register with data validation
+router.post('/register', userValidator.registerValidator, userActions.register)
 
 module.exports = router;
