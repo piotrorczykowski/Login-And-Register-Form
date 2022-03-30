@@ -46,7 +46,7 @@ class UserActions {
 
         //  Get user data
         const { firstName, lastName, email, password } = req.body
-        
+
         //  Hash password
         const hashedPassword = await bcrypt.hash(password, 10)
 

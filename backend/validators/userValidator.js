@@ -17,8 +17,7 @@ exports.registerValidator = [
         .exists()
         .isLength({ min: 4 }),
     check('email', 'Email is required')
-        .isEmail()
-        .normalizeEmail(),
+        .isEmail(),
     check('password', 'Password name must be 8+ characters long')
         .exists()
         .isLength({ min: 8 }),
