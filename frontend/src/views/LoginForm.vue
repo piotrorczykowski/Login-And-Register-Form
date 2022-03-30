@@ -1,6 +1,7 @@
 <template>
     <div id="login">
         <h1>Log In</h1>
+        <p v-if="errorFlag" class="error errorMessage">Incorrect username or password!</p>
         <form @submit.prevent="submitForm">
             <InputField
                 type="email"
@@ -26,6 +27,7 @@
 import InputField from '../components/InputField.vue'
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, maxLength } from '@vuelidate/validators'
+import axios from '../axios'
 
 export default {
     components: {
@@ -34,6 +36,7 @@ export default {
     data() {
         return {
             v$: useValidate(),
+            errorFlag: false,
             form: {
                 mail: '',
                 password: ''   
@@ -62,8 +65,11 @@ export default {
             this.form.mail = this.$refs.mail.getValue()
             this.form.password = this.$refs.password.getValue()
         },
-        submitForm() {
+        async submitForm() {
             this.getData()
+
+            //  Flag for error message
+            this.errorFlag = false
 
             //  Valid for each field
             this.v$.form.mail.$touch()
@@ -73,12 +79,24 @@ export default {
             this.v$.form.mail.$error ? this.$refs.mail.isError(true) : this.$refs.mail.isError(false)
             this.v$.form.password.$error ? this.$refs.password.isError(true) : this.$refs.password.isError(false)
 
-
             //  Check if everything is oK
             if(!this.v$.form.mail.$error && !this.v$.form.password.$error)
             {
-                alert('Form successfully submitted.')
-                console.log(this.form)
+                //  Try to login and get token
+                try {
+                    const res = await axios.post('/login', {
+                        email: this.form.mail,
+                        password: this.form.password
+                    })
+
+                    //  Save token to local storage
+                    localStorage.setItem('token', res.data.token)
+                } catch (err) {
+                    //  Flag for error message
+                    this.errorFlag = true
+                    console.log(err.response.data)
+
+                }
             }
         }
     }
@@ -115,7 +133,14 @@ export default {
     .error {
         width: 25em;
         color: #ff0000;
-    } 
+    }
+
+    .errorMessage {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-top: 1em;
+    }
 
     #submit {
         width: 25em;

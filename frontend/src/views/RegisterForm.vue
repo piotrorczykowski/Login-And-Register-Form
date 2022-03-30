@@ -1,6 +1,7 @@
 <template>
     <div id="register">
         <h1>Register</h1>
+        <p v-if="errorFlag" class="error errorMessage">{{ errorMessage }}</p>
         <form @submit.prevent="submitForm">
             <InputField
                 type="text"
@@ -43,7 +44,8 @@
 <script>
 import InputField from '../components/InputField.vue'
 import useValidate from '@vuelidate/core'
-import { required, email, minLength, maxLength } from '@vuelidate/validators'
+import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import axios from '../axios'
 
 export default {
     components: {
@@ -52,6 +54,8 @@ export default {
     data() {
         return {
             v$: useValidate(),
+            errorFlag: false,
+            errorMessage: '',
             form: {
                 firstName: '',
                 lastName: '',
@@ -66,11 +70,11 @@ export default {
             form: {
                 firstName: {
                     required,
-                    min: minLength(4)
+                    min: minLength(3)
                 },
                 lastName: {
                     required,
-                    min: minLength(4)
+                    min: minLength(3)
                 },
                 mail: {
                     required,
@@ -86,7 +90,7 @@ export default {
                     required,
                     min: minLength(8),
                     max: maxLength(50),
-                    isConfirmed: (confirmPassword) => confirmPassword === this.form.password
+                    isConfirmed: helpers.withMessage('Confirm password must be the same as the password!', (confirmPassword) => confirmPassword === this.form.password )
                 }
             }
         }
@@ -114,16 +118,33 @@ export default {
             this.v$.form.password.$error ? this.$refs.password.isError(true) : this.$refs.password.isError(false)
             this.v$.form.confirmPassword.$error ? this.$refs.confirmPassword.isError(true) : this.$refs.confirmPassword.isError(false)
         },
-        submitForm() {
+        async submitForm() {
             this.getData()
+
+            //  Flag for error message
+            this.errorFlag = false
+
             this.validEachField()
             this.setUnsetErrorStyles()
 
             //  Check if everything is oK
             if(!this.v$.form.firstName.$error && !this.v$.form.lastName.$error && !this.v$.form.mail.$error && !this.v$.form.password.$error && !this.v$.form.confirmPassword.$error)
             {
-                alert('Form successfully submitted.')
-                console.log(this.form)
+                try {
+                    await axios.post('/register', {
+                        firstName: this.form.firstName,
+                        lastName: this.form.lastName,
+                        email: this.form.mail,
+                        password: this.form.password
+                    })
+
+                    //  Move to login page
+                    this.$router.push('/')
+                } catch (err) {
+                    //  Error message handling
+                    this.errorFlag = true
+                    this.errorMessage = err.response.data.message
+                }
             }
         }
     }
@@ -160,7 +181,14 @@ export default {
     .error {
         width: 25em;
         color: #ff0000;
-    } 
+    }
+
+    .errorMessage {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-top: 1em;
+    }
 
     #submit {
         width: 25em;

@@ -12,10 +12,10 @@ exports.loginValidator = [
 exports.registerValidator = [
     check('firstName', 'First name must be 4+ characters long')
         .exists()
-        .isLength({ min: 4 }),
+        .isLength({ min: 3 }),
     check('lastName', 'Last name must be 4+ characters long')
         .exists()
-        .isLength({ min: 4 }),
+        .isLength({ min: 3 }),
     check('email', 'Email is required')
         .isEmail(),
     check('password', 'Password name must be 8+ characters long')
