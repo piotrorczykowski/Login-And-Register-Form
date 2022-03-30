@@ -1,5 +1,5 @@
 const express = require('express')
-const { port } = require('./config')
+const { PORT } = require('./config')
 const apiRouter = require('./routes/api')
 const bodyParser = require('body-parser')
 const app = express()
@@ -14,6 +14,6 @@ app.use(bodyParser.json())
 app.use('/', apiRouter)
 
 // server
-app.listen(port, () => {
-    console.log(`Server is listening on http://localhost:${port}...`)
+app.listen(PORT, () => {
+    console.log(`Server is listening on http://localhost:${PORT}...`)
 })

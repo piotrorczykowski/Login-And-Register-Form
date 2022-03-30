@@ -1,4 +1,4 @@
 const mongoose = require('mongoose')
-const { database } = require('../config')
+const { DATABASE } = require('../config')
 
-mongoose.connect(database, { })
+mongoose.connect(DATABASE, { })

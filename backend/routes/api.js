@@ -9,4 +9,7 @@ router.post('/login', userValidator.loginValidator, userActions.login)
 //  Register with data validation
 router.post('/register', userValidator.registerValidator, userActions.register)
 
+//  Check jwt token
+router.get('/auth', userActions.authUser)
+
 module.exports = router;

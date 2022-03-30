@@ -2,7 +2,7 @@ const User = require('../../db/models/user')
 const bcrypt = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
-const { jwt_secret } = require('../../config')
+const { JWT_SECRET } = require('../../config')
 
 class UserActions {
     async login(req, res) {
@@ -26,7 +26,7 @@ class UserActions {
             const token = jwt.sign({
                 id: user._id,
                 email: user.email
-            }, jwt_secret, { expiresIn: '1h' })
+            }, JWT_SECRET)
 
             return res.status(200).json({
                 message: 'Authorization successfully!',
@@ -69,6 +69,25 @@ class UserActions {
             }
             return res.status(500).json({ message: err.message })
         }
+    }
+
+    async authUser(req, res) {
+        //  Extract token
+        const token = req.headers.authorization.split(' ')[1]
+
+        // Check if the token exists
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized' })
+        }
+
+        try {
+            // Verify the token
+            const decode = jwt.verify(token, JWT_SECRET);
+            return res.status(200).json({ message: 'Authorized', data: decode});
+        } catch (err) {
+            return res.status(401).json({ message: 'Unauthorized' })
+        }
+
     }
 }
 
