@@ -24,8 +24,8 @@ class UserActions {
         //  Check if password is correct
         if(await bcrypt.compare(password, user.password)) {
             const token = jwt.sign({
-                id: user._id,
-                email: user.email
+                email: user.email,
+                firstName: user.firstName
             }, JWT_SECRET)
 
             return res.status(200).json({
@@ -82,7 +82,7 @@ class UserActions {
 
         try {
             // Verify the token
-            const decode = jwt.verify(token, JWT_SECRET);
+            const decode = await jwt.verify(token, JWT_SECRET);
             return res.status(200).json({ message: 'Authorized', data: decode});
         } catch (err) {
             return res.status(401).json({ message: 'Unauthorized' })

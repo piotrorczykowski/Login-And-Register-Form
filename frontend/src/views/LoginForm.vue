@@ -91,11 +91,13 @@ export default {
 
                     //  Save token to local storage
                     localStorage.setItem('token', res.data.token)
+
+                    //  Move to homepage
+                    this.$router.push('/homepage')
                 } catch (err) {
                     //  Flag for error message
                     this.errorFlag = true
                     console.log(err.response.data)
-
                 }
             }
         }
