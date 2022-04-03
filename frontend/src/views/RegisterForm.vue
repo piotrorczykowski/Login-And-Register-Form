@@ -2,6 +2,7 @@
     <div id="register">
         <h1>Register</h1>
         <p v-if="errorFlag" class="error errorMessage">{{ errorMessage }}</p>
+        <p v-if="successFlag" class="successMessage">{{ successMessage }}</p>
         <form @submit.prevent="submitForm">
             <InputField
                 type="text"
@@ -56,6 +57,8 @@ export default {
             v$: useValidate(),
             errorFlag: false,
             errorMessage: '',
+            successFlag: false,
+            successMessage: 'Congratulations! Your account has been created',
             form: {
                 firstName: '',
                 lastName: '',
@@ -124,6 +127,9 @@ export default {
             //  Flag for error message
             this.errorFlag = false
 
+            //  Flag for success message
+            this.successFlag = false
+
             this.validEachField()
             this.setUnsetErrorStyles()
 
@@ -139,9 +145,12 @@ export default {
                     })
 
                     console.log(res.data?.message)
+
+                    //  Success message
+                    this.successFlag = true
                     
-                    //  Move to login page
-                    this.$router.push('/')
+                    //  Wait for success message and move to login page
+                    setTimeout(() => this.$router.push('/'), 3000)                    
                 } catch (err) {
                     //  Error message handling
                     this.errorFlag = true
@@ -186,6 +195,15 @@ export default {
     }
 
     .errorMessage {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-top: 1em;
+    }
+
+    .successMessage {
+        width: 25em;
+        color: #22bb33;
         text-align: center;
         font-weight: bold;
         font-size: 1.2em;
