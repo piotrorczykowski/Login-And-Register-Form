@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/LoginForm.vue'
 import Register from '../views/RegisterForm.vue'
 import Home from '../views/HomePage.vue'
+import NonAuth from '../views/NonAuth.vue'
 import axios from '../axios'
 
 const routes = [
@@ -20,12 +21,10 @@ const routes = [
         name: 'Home',
         component: Home,
         beforeEnter: async (to, from, next) => {
-            console.log(to)
-
             //  Check if token exists
             if(!localStorage.getItem('token')) {
                 //  Move to login page
-                next(from)
+                next('NonAuth')
             }
 
             // Try verifying token
@@ -46,9 +45,14 @@ const routes = [
             } catch (err) {
                 console.log(err.response.message)
                 //  Move to login page
-                next(from)
+                next(NonAuth)
             } 
         }
+    },
+    {
+        path: '/nonAuth',
+        name: 'NonAuth',
+        component: NonAuth
     }
 ]
 
