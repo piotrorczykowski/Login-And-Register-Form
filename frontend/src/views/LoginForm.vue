@@ -1,7 +1,7 @@
 <template>
     <div id="login">
         <h1>Log In</h1>
-        <p v-if="errorFlag" class="error errorMessage">Incorrect username or password!</p>
+        <p v-if="errorFlag" class="error errorMessage">Incorrect email or password!</p>
         <form @submit.prevent="submitForm">
             <InputField
                 type="email"
@@ -97,7 +97,7 @@ export default {
                 } catch (err) {
                     //  Flag for error message
                     this.errorFlag = true
-                    console.log(err.response.data)
+                    console.log(err.response?.data)
                 }
             }
         }

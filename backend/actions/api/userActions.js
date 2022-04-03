@@ -65,7 +65,7 @@ class UserActions {
         } catch (err) {
             //  Message for duplicate username
             if(err.code === 11000) {
-                return res.status(409).json({ message: 'Username already in use' })
+                return res.status(409).json({ message: 'Email already in use' })
             }
             return res.status(500).json({ message: err.message })
         }

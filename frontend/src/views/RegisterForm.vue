@@ -104,7 +104,7 @@ export default {
             this.form.password = this.$refs.password.getValue()
             this.form.confirmPassword = this.$refs.confirmPassword.getValue()
         },
-        validEachField(){
+        validEachField() {
             this.v$.form.firstName.$touch()
             this.v$.form.lastName.$touch()
             this.v$.form.mail.$touch()
@@ -131,19 +131,21 @@ export default {
             if(!this.v$.form.firstName.$error && !this.v$.form.lastName.$error && !this.v$.form.mail.$error && !this.v$.form.password.$error && !this.v$.form.confirmPassword.$error)
             {
                 try {
-                    await axios.post('/register', {
+                    const res = await axios.post('/register', {
                         firstName: this.form.firstName,
                         lastName: this.form.lastName,
                         email: this.form.mail,
                         password: this.form.password
                     })
 
+                    console.log(res.data?.message)
+                    
                     //  Move to login page
                     this.$router.push('/')
                 } catch (err) {
                     //  Error message handling
                     this.errorFlag = true
-                    this.errorMessage = err.response.data.message
+                    this.errorMessage = err.response?.data.message
                 }
             }
         }
