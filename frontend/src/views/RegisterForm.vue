@@ -1,5 +1,5 @@
 <template>
-    <div id="register">
+    <div class="container containerExtended">
         <h1>Register</h1>
         <p v-if="errorFlag" class="error errorMessage">{{ errorMessage }}</p>
         <p v-if="successFlag" class="successMessage">{{ successMessage }}</p>
@@ -162,43 +162,11 @@ export default {
 }
 </script>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        letter-spacing: 0.0625em;
-    }
-
-    #register {
-        width: 40vw;
+<style scoped>
+    .containerExtended {
         height: 100vh;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-    }
-
-    h1 {
-        font-size: 3em;
-        color: #343a40;
-    }
-
-    form {
-        padding: 1em 3em 1em 3em;
-    }
-
-    .error {
-        width: 25em;
-        color: #ff0000;
-    }
-
-    .errorMessage {
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.2em;
-        margin-top: 1em;
+        margin-top: 0;
     }
 
     .successMessage {
@@ -208,25 +176,5 @@ export default {
         font-weight: bold;
         font-size: 1.2em;
         margin-top: 1em;
-    }
-
-    #submit {
-        width: 25em;
-        height: 2.5em;
-        margin-top: 1.5em;
-        font-size: 1.2em;
-        font-weight: bold;
-        background-color: #0594B4;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    #submit:hover {
-        opacity: 0.95;
-    }
-
-    #submit:active {
-        transform: scale(0.99);
     }
 </style>

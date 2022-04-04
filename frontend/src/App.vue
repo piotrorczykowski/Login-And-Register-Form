@@ -19,12 +19,89 @@ export default {
 }
 </script>
 
+// Global styles
 <style>
   * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 0.0625em;
   }
 
+  .container {
+    width: 40vw;
+    height: 40vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20vh;
+  }
+
+  .error {
+    width: 25em;
+    color: #ff0000;
+  }
+
+  .errorMessage {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 1em;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #343a40;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-top: 5vh;
+  }
+
+  form {
+    padding: 1em 3em 1em 3em;
+  }
+
+  #submit {
+    width: 25em;
+    height: 2.5em;
+    margin-top: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #0594B4;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #submit:hover {
+    opacity: 0.95;
+  }
+
+  #submit:active {
+    transform: scale(0.99);
+  }
+
+  #link {
+    text-decoration: none;
+    color: #0594B4;
+  }
+
+  #link:hover {
+    opacity: 0.8;
+  }
+</style>
+
+
+
+
+
+<style scoped>
   #app {
     display: flex;
   }
@@ -43,5 +120,4 @@ export default {
     width: 55vw;
     height: 100vh;
   }
-
 </style>

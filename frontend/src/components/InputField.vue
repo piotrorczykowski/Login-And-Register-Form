@@ -56,15 +56,7 @@ export default {
 }
 </script>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        letter-spacing: 0.0625em;
-    }
-
+<style scoped>
     #field {
         height: 6em;
         display: flex;

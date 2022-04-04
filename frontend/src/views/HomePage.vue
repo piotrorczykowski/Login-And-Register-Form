@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div class="container">
         <h1>HomePage</h1>
         <h2>Welcome <span id="user">{{ name }}</span> you are logged in</h2>
         <router-link @click="logOut" id="logOutButton" to="/">Log out</router-link>
@@ -27,35 +27,7 @@ export default {
 }
 </script>
 
-<style>
- * {
-        margin: 0;
-        padding: 0;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        letter-spacing: 0.0625em;
-    }
-
-    #home {
-        width: 40vw;
-        height: 40vh;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        margin-top: 20vh;
-    }
-
-    h1 {
-        font-size: 3em;
-        color: #343a40;
-    }
-
-    h2 {
-        font-size: 1.5em;
-        margin-top: 5vh;
-    }
-
+<style scoped>
     #user {
         color: #0594B4;
         text-decoration: underline;

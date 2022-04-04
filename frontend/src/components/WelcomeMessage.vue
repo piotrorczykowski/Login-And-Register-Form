@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div id="welcome">
     <div id="graphic">
         <img src="@/assets/welcomeImage.jpeg" id="image">
     </div>
@@ -9,7 +9,7 @@
           Proin rhoncus quam scelerisque, ultrices velit non, interdum massa.
         </p>
     </div>   
-</div>
+  </div>
 </template>
 
 <script>
@@ -18,12 +18,7 @@ export default {
 }
 </script>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  
+<style scoped>
   #image {
     width: 35vw;
     height: auto;
@@ -45,4 +40,10 @@ export default {
     font-size: 1.2em;
     padding: 1em;
   }
+
+  /* TABLET */
+  @media screen and (max-width: 1250px) {
+
+  }
+  /* END */
 </style>
