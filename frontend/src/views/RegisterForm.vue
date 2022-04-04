@@ -34,10 +34,10 @@
                 otherValues="confirmPassword"
                 ref="confirmPassword"/>
             <p class="error" v-if="v$.form.confirmPassword.$error">{{ v$.form.confirmPassword.$errors[0].$message }}</p>
-            <input type="submit" id="submit" value="Create Account"/>
+            <input type="submit" class="submit" value="Create Account"/>
         </form>
         <p>Have an account?
-            <router-link id="link" to="/">Log in</router-link>
+            <router-link class="link" to="/">Sign in</router-link>
         </p>
     </div>
 </template>
@@ -166,7 +166,7 @@ export default {
     .containerExtended {
         height: 100vh;
         justify-content: center;
-        margin-top: 0;
+        margin-top: -5vh;
     }
 
     .successMessage {
@@ -177,4 +177,30 @@ export default {
         font-size: 1.2em;
         margin-top: 1em;
     }
+
+    /* TABLET */
+    @media screen and (max-width: 1250px) {
+        .successMessage {
+            font-size: 1.5em;
+        }
+    }
+    /* END */
+
+    /* PHONE */
+    @media screen and (max-width: 450px) {
+        .containerExtended {
+            width: 95vw;
+            height: 100vh;
+            margin-top: -5vh;
+        }
+
+        .successMessage {
+            font-size: 1em;
+        }
+
+        p {
+            font-size: 1.1em;
+        }
+    }
+    /* END */
 </style>

@@ -57,6 +57,17 @@ export default {
 </script>
 
 <style scoped>
+    * {
+        --margin-label-1: -40px;
+        --margin-label-2: -10px;
+
+        --font-label-1: 1.5em;
+        --font-label-2: 1em;
+
+        --width-line-1: 25em;
+        --width-line-2: 0;
+    }
+
     #field {
         height: 6em;
         display: flex;
@@ -67,26 +78,26 @@ export default {
     /* Styles for placeholder */
     @keyframes placeholderForwards {
         from {
-            font-size: 1.5em;
-            margin-bottom: -40px;
+            font-size: var(--font-label-1);
+            margin-bottom: var(--margin-label-1);
             opacity: 1;
         }
         to {
-            font-size: 1em;
-            margin-bottom: -10px;
+            font-size: var(--font-label-2);
+            margin-bottom: var(--margin-label-2);
             opacity: 0.7;
         }
     }
 
     @keyframes placeholderBackwards {
         from {
-            font-size: 1em;
-            margin-bottom: -10px;
+            font-size: var(--font-label-2);
+            margin-bottom: var(--margin-label-2);
             opacity: 0.7;
         }
         to {
-            font-size: 1.5em;
-            margin-bottom: -40px;
+            font-size: var(--font-label-1);
+            margin-bottom: var(--margin-label-1);
             opacity: 1;
         }
     }
@@ -94,8 +105,8 @@ export default {
     label {
         width: 20em;
         align-self: flex-start;
-        font-size: 1.5em;
-        margin-bottom: -40px;
+        font-size: var(--font-label-1);
+        margin-bottom: var(--margin-label-1);
         z-index: -1;
         order: -1;
         cursor: pointer;
@@ -111,8 +122,8 @@ export default {
     }
 
     .placeholderUp {
-        font-size: 1em;
-        margin-bottom: -10px;
+        font-size: var(--font-label-2);
+        margin-bottom: var(--margin-label-2);
         opacity: 0.7;
     }
     /* End */
@@ -133,17 +144,17 @@ export default {
 
     /* Styles for line under input */
     @keyframes lineForwards {
-        from { width: 0em; }
-        to { width: 25em; }
+        from { width: var(--width-line-2); }
+        to { width: var(--width-line-1); }
     }
 
     @keyframes lineBackwards {
-        from { width: 25em; }
-        to { width: 0em; }
+        from { width: var(--width-line-1); }
+        to { width: var(--width-line-2); }
     }
 
     #line {
-        width: 25em;
+        width: var(--width-line-1);
         height: 3px;
         font-size: 1.2em;
         margin-top: -30px;
@@ -153,7 +164,7 @@ export default {
 
     #line::after {
         content: "";
-        width: 0;
+        width: var(--width-line-2);
         height: 3px;
         position: absolute;
         background-color: v-bind('lineColorSecond')
@@ -168,4 +179,65 @@ export default {
 
     }
     /* End */
+
+    /* TABLET */
+    @media screen and (max-width: 1250px) {
+        * {
+            --margin-label-1: -60px;
+
+            --font-label-1: 1.8em;
+            --font-label-2: 1.5em;
+        }
+
+        #field {
+            height: 8em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        label {
+            font-size: var(--font-label-1);
+        }
+
+        .placeholderUp, input {
+            font-size: 1.5em;
+        }
+
+        #line {
+            height: 4px;
+            font-size: 1.5em;
+        }
+
+         #line::after {
+            height: 4px;
+         }
+    }
+    /* END */
+
+    /* PHONE */
+    @media screen and (max-width: 450px) {
+        * {
+            --margin-label-1: -50px;
+
+            --width-line-1: 95vw;
+        }
+
+        #field {
+            width: 95vw;
+            height: 7em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        input {
+            font-size: 1.3em;
+        }
+
+        input, #line {
+            width: 95vw;
+        }
+    }
+    /* END */
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container containerExtended">
         <h1>HomePage</h1>
         <h2>Welcome <span id="user">{{ name }}</span> you are logged in</h2>
         <router-link @click="logOut" id="logOutButton" to="/">Log out</router-link>
@@ -55,4 +55,36 @@ export default {
     #logOutButton:active {
         transform: scale(0.99);
     }
+
+    /* TABLET */
+    @media screen and (max-width: 1250px) {
+        h2 {
+            margin-top: 1em;
+            font-size: 1.8em;
+        }
+
+        #logOutButton {
+            width: 15em;
+            height: 2.2em;
+            font-size: 2em;
+        }
+    }
+    /* END */
+
+    /* PHONE */
+    @media screen and (max-width: 450px) {
+        .containerExtended {
+            margin-top: 20vh;
+        }
+
+        h2 {
+            margin-top: 1em;
+            font-size: 1.4em;
+        }
+
+        #logOutButton {
+            font-size: 1.2em;
+        }
+    }
+    /* END */
 </style>

@@ -66,7 +66,7 @@ export default {
     padding: 1em 3em 1em 3em;
   }
 
-  #submit {
+  .submit {
     width: 25em;
     height: 2.5em;
     margin-top: 0.5em;
@@ -79,22 +79,81 @@ export default {
     cursor: pointer;
   }
 
-  #submit:hover {
+  .submit:hover {
     opacity: 0.95;
   }
 
-  #submit:active {
+  .submit:active {
     transform: scale(0.99);
   }
 
-  #link {
+  .link {
     text-decoration: none;
     color: #0594B4;
   }
 
-  #link:hover {
+  .link:hover {
     opacity: 0.8;
   }
+
+  /* TABLET */
+  @media screen and (max-width: 1250px) {
+    .container {
+      width: 100vw;
+      height: 55vh;
+      margin-top: 5vh;
+    }
+
+    h1 {
+      font-size: 3.5em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .submit {
+      width: 15em;
+      height: 2.2em;
+      font-size: 2em;
+    }
+
+    .container p {
+      width: 80vw;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    .error {
+      margin-top: -1em;
+    }
+
+    .errorMessage {
+      margin-top: 0;
+    }
+  }
+  /* END */
+
+  /* PHONE */
+  @media screen and (max-width: 450px) {
+    * {
+      overflow:hidden;
+    }
+    
+    .container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .submit {
+      width: 10em;
+      height: 2.2em;
+      font-size: 1.5em;
+    }
+  }
+  /* END */
 </style>
 
 
@@ -120,4 +179,35 @@ export default {
     width: 55vw;
     height: 100vh;
   }
+
+  /* TABLET */
+  @media screen and (max-width: 1250px) {
+    #app {
+      flex-direction: column;
+    }
+
+    #left {
+      width: 100vw;
+      height: 40vh;
+    }
+
+    #right {
+      width: 100vw;
+      height: 60vh;
+    }
+  }
+  /* END */
+
+  /* PHONE */
+  @media screen and (max-width: 450px) {
+    #left {
+      display: none;
+    }
+
+    #right {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+  /* END */
 </style>

@@ -43,7 +43,21 @@ export default {
 
   /* TABLET */
   @media screen and (max-width: 1250px) {
+    #image {
+      width: 40vw;
+      height: auto;
+      margin-left: calc((100vw - 40vw) / 2 );
+    }
 
+    #message h2 {
+      padding-top: 0;
+      margin-top: 0;
+      font-size: 2.5em;
+    }
+
+    #message p {
+      font-size: 1.5em;
+    }
   }
   /* END */
 </style>

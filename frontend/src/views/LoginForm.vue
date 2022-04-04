@@ -15,10 +15,10 @@
                 otherValues="password"
                 ref="password"/>
             <p class="error" v-if="v$.form.password.$error">{{ v$.form.password.$errors[0].$message }}</p>
-            <input id="submit" type="submit" value="Sign in">
+            <input class="submit" type="submit" value="Sign in">
         </form>
         <p>Don't have an account yet?
-            <router-link id="link" to="/register">Sign Up</router-link>
+            <router-link class="link" to="/register">Sign Up</router-link>
         </p>
     </div>
 </template>
@@ -106,5 +106,16 @@ export default {
 </script>
 
 <style scoped>
+    /* PHONE */
+    @media screen and (max-width: 450px) {
+        .container {
+            margin-top: 15vh;
+        }
 
+        p {
+            margin-top: 1em;
+            font-size: 1.1em;
+        }
+    }
+    /* END */
 </style>
