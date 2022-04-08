@@ -191,11 +191,15 @@ export default {
         .containerExtended {
             width: 95vw;
             height: 100vh;
-            margin-top: -5vh;
+            margin-top: 0vh;
         }
 
         .successMessage {
             font-size: 1em;
+        }
+
+        form {
+            padding: 0;
         }
 
         p {

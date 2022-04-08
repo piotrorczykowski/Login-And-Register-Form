@@ -139,7 +139,7 @@ export default {
   /* PHONE */
   @media screen and (max-width: 450px) {
     * {
-      overflow:hidden;
+      overflow: hidden;
     }
     
     .container {

@@ -44,9 +44,9 @@ export default {
   /* TABLET */
   @media screen and (max-width: 1250px) {
     #image {
-      width: 40vw;
+      width: 20em;
       height: auto;
-      margin-left: calc((100vw - 40vw) / 2 );
+      margin-left: calc((100vw - 20em) / 2 );
     }
 
     #message h2 {
